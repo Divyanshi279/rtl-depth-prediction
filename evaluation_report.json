@@ -1,0 +1,8 @@
+{
+    "mean_absolute_error": 0.3376,
+    "root_mean_squared_error": 0.4056,
+    "timing_violations": [
+        {"gate": "gate2", "depth": 3.5, "violates": true},
+        {"gate": "gate3", "depth": 4.2, "violates": false}
+    ]
+}

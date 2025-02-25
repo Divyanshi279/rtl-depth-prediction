@@ -1,0 +1,38 @@
+[
+    {
+      "name": "U1",
+      "type": "AND",
+      "connections": ["A", "B"]
+    },
+    {
+      "name": "U2",
+      "type": "OR",
+      "connections": ["B", "C"]
+    },
+    {
+      "name": "U3",
+      "type": "NOT",
+      "connections": ["U1"]
+    },
+    {
+      "name": "U4",
+      "type": "XOR",
+      "connections": ["U2", "U3"]
+    },
+    {
+      "name": "A",
+      "type": "INPUT",
+      "connections": []
+    },
+    {
+      "name": "B",
+      "type": "INPUT",
+      "connections": []
+    },
+    {
+      "name": "C",
+      "type": "INPUT",
+      "connections": []
+    }
+  ]
+  

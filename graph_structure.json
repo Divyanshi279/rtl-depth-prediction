@@ -1,0 +1,16 @@
+{
+    "nodes": [
+        {"name": "input1", "features": [0.1, 0.2]},
+        {"name": "input2", "features": [0.2, 0.1]},
+        {"name": "gate1", "features": [0.3, 0.4]},
+        {"name": "gate2", "features": [0.5, 0.6]},
+        {"name": "gate3", "features": [0.7, 0.8]}
+    ],
+    "edges": [
+        {"from": "input1", "to": "gate1"},
+        {"from": "input2", "to": "gate1"},
+        {"from": "input1", "to": "gate2"},
+        {"from": "gate1", "to": "gate2"},
+        {"from": "gate2", "to": "gate3"}
+    ]
+}
