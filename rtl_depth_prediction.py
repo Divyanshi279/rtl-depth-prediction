@@ -24,7 +24,7 @@ def extract_features(G, gate_types):
     
     features = []
     for node in G.nodes():
-        gate_type = gate_types.get(node, "INPUT")  # Default to "INPUT" if missing
+        gate_type = gate_types.get(node, "INPUT")  
         features.append([centrality.get(node, 0), fan_in.get(node, 0), fan_out.get(node, 0), gate_type_encoding.get(gate_type, 0)])
     
     return torch.tensor(features, dtype=torch.float)
@@ -96,7 +96,7 @@ def train_model(G, depth_dict, gate_types, setup_time, hold_time, clock_period):
     nx.draw(G, with_labels=True, node_size=3000, node_color='lightblue', font_size=12, font_weight='bold', edge_color='gray')
     plt.title("RTL Netlist Graph Visualization")
     plt.savefig("rtl_netlist_graph.png")  # Save the plot to a file
-    plt.close()  # Close the plot
+    plt.close()  
     
     print("Graph saved as 'rtl_netlist_graph.png'.")
     
@@ -122,7 +122,7 @@ if __name__ == "__main__":
             G.add_node(gate["name"], type=gate["type"])
             gate_types[gate["name"]] = gate["type"]
             for connection in gate["connections"]:
-                if connection not in G.nodes():  # Ensure input nodes exist
+                if connection not in G.nodes():  
                     G.add_node(connection, type="INPUT")
                 G.add_edge(connection, gate["name"])
     
