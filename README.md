@@ -1,17 +1,17 @@
-# RTL Netlist Depth Prediction using Hybrid Graph Neural Networks + Heuristic
+# RTL Netlist Depth Prediction using Hybrid Graph Neural Networks + Heuristic techniques
 
 ## 📌 Project Overview
-This project utilizes *Graph Neural Networks (GNNs)* to predict the *combinational depth* of gates in an *RTL (Register Transfer Level) netlist. The system extracts **graph-based features* and applies *hybrid GNN + heuristic* techniques to analyze and predict the circuit timing.
+This project utilizes *Graph Neural Networks (GNNs)* to predict the *combinational depth* of gates in an *RTL (Register Transfer Level) netlist*. The system extracts **graph-based features** and applies *hybrid GNN + heuristic* techniques to analyze and predict the circuit timing.
 
 ## 🚀 Features
 - *Graph-Based Feature Extraction*: Computes centrality, fan-in, fan-out, and gate type encoding.
-- *Hybrid GNN Model: Implements a two-layer **Graph Convolutional Network (GCN)*.
-- *Training and Evaluation: Uses **MSE Loss* optimization with *Adam optimizer*.
-- *Timing Analysis: Predicts gate depths and checks for **timing violations*.
-- *Visualization: Generates a **graph representation* of the RTL netlist.
+- *Hybrid GNN Model*: Implements a two-layer **Graph Convolutional Network (GCN)**.
+- *Training and Evaluation*: Uses **MSE Loss** optimization with *Adam optimizer*.
+- *Timing Analysis*: Predicts gate depths and checks for **timing violations**.
+- *Visualization*: Generates a **graph representation** of the RTL netlist.
 
-## 📂 File Structure
-
+## 📚 File Structure
+```
 ├── __pycache__/                 # Compiled Python files (auto-generated)  
 ├── depth_report.json            # Combinational depth report of the RTL netlist  
 ├── evaluation_report.json       # Model evaluation metrics (MAE, RMSE)  
@@ -23,21 +23,20 @@ This project utilizes *Graph Neural Networks (GNNs)* to predict the *combination
 ├── test_rtl_depth_prediction.py # Unit tests for RTL depth prediction model  
 ├── timing_constraints.json      # Setup, hold time, and clock period constraints  
 └── README.md                    # Project documentation  
-
+```
 
 ## 🛠 Dependencies
 Ensure you have the following installed before running the project:
-
-bash
+```bash
 pip install networkx torch torch-geometric numpy matplotlib pytest
-
+```
 
 ## 🎯 Usage
 ### 1️⃣ Running the Model
 Execute the script and provide the required file paths and constraints:
-bash
+```bash
 python rtl_depth_prediction.py
-
+```
 **Inputs Required:**
 - RTL netlist file (JSON format)
 - Combinational depth report file (JSON format)
@@ -45,23 +44,42 @@ python rtl_depth_prediction.py
 
 ### 2️⃣ Running Tests
 To validate feature extraction and GNN performance:
-bash
-pytest test_rtl_depth.py
+```bash
+pytest test_rtl_depth_prediction.py
 ```
-Tested Environment
-✅ This project is developed and tested on GitHub Codespaces.
 
 ## 📊 Results & Output
 - *Training Logs*: Displays loss, MAE, RMSE for every 10 epochs.
 - *Predicted Gate Depths*: Outputs computed depth values per gate.
 - *Timing Violations*: Alerts if any gate violates the clock period.
-- *Graph Visualization*: Saves the RTL netlist graph as rtl_netlist_graph.png.
+- *Graph Visualization*: Saves the RTL netlist graph as `rtl_netlist_graph.png`.
 
 ## 🏆 Performance Metrics
 - *Mean Absolute Error (MAE)*: Measures absolute prediction accuracy.
 - *Root Mean Square Error (RMSE)*: Evaluates the deviation from true values.
 
-## 📌 Future Improvements
+## 📌 Environment Setup
+- The project has been tested and verified on **GitHub Codespaces**.
+- Ensure you have Python 3.8+ installed.
+- Clone the repository:
+  ```bash
+  git clone https://github.com/your-repo/RTL-Depth-Prediction.git
+  cd RTL-Depth-Prediction
+  ```
+- Install dependencies using:
+  ```bash
+  pip install -r requirements.txt
+  ```
+
+## 📈 Future Improvements
 - Implement *attention-based GNNs* (e.g., GAT) for better feature learning.
 - Introduce *hyperparameter tuning* for improved model accuracy.
 - Extend support for *multi-clock domain circuits*.
+
+## 📚 Additional Notes
+- Ensure the input files follow the expected JSON format.
+- Modify `rtl_depth_prediction.py` for custom feature extraction.
+- For large circuits, consider optimizing graph processing to improve performance.
+
+🛠 **Maintainers:** Divyanshi Panchal (https://github.com/Divyanshi279)
+
