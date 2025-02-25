@@ -15,7 +15,7 @@ def extract_features(G, gate_types):
         print("⚠️ Graph is disconnected. Using degree centrality instead.")
         centrality = nx.degree_centrality(G)
     else:
-        centrality = nx.betweenness_centrality(G)  # Alternative approach
+        centrality = nx.betweenness_centrality(G)  
     
     fan_in = {node: len(list(G.predecessors(node))) for node in G.nodes()}
     fan_out = {node: len(list(G.successors(node))) for node in G.nodes()}
