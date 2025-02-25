@@ -8,11 +8,11 @@ from rtl_depth_prediction import extract_features, compute_metrics, GNNModel
 def test_large_graph(num_nodes, num_edges):
     """Test feature extraction for large RTL graphs."""
     G = nx.gnm_random_graph(num_nodes, num_edges, directed=True)
-    gate_types = {node: "AND" for node in G.nodes()}  # Default all gates to "AND"
+    gate_types = {node: "AND" for node in G.nodes()}  
     
     features = extract_features(G, gate_types)
 
-    assert features.shape[0] == num_nodes  # Ensure correct number of nodes
+    assert features.shape[0] == num_nodes  
     assert isinstance(features, torch.Tensor)
 
 def test_full_pipeline():
@@ -25,8 +25,8 @@ def test_full_pipeline():
     features = extract_features(G, gate_types)
 
     # Convert NetworkX graph to PyTorch Geometric format
-    data = pyg_utils.from_networkx(G)  # Returns Data object
-    edge_index = data.edge_index.long()  # Extract edge index
+    data = pyg_utils.from_networkx(G)  
+    edge_index = data.edge_index.long()  
 
     # Ensure feature extraction is valid
     assert isinstance(features, torch.Tensor)
