@@ -6,6 +6,7 @@ from torch_geometric.data import Data
 from torch_geometric.nn import GCNConv
 import numpy as np
 import json
+import matplotlib.pyplot as plt
 
 # --- Feature Extraction ---
 def extract_features(G, gate_types):
@@ -40,13 +41,6 @@ class GNNModel(nn.Module):
         x = self.conv2(x, edge_index)
         return x
 
-# --- Compute MAE and RMSE ---
-def compute_metrics(y_true, y_pred):
-    """ Calculate Mean Absolute Error (MAE) and Root Mean Squared Error (RMSE). """
-    mae = torch.mean(torch.abs(y_true - y_pred))
-    rmse = torch.sqrt(torch.mean((y_true - y_pred) ** 2))
-    return mae.item(), rmse.item()
-
 # --- Training the Model ---
 def train_model(G, depth_dict, gate_types, setup_time, hold_time, clock_period):
     features = extract_features(G, gate_types)
@@ -68,14 +62,16 @@ def train_model(G, depth_dict, gate_types, setup_time, hold_time, clock_period):
         optimizer.zero_grad()
         out = model(data.x, data.edge_index)
         loss = criterion(out, y)
+        
+        # Calculate MAE and RMSE
+        mae = torch.mean(torch.abs(out - y))
+        rmse = torch.sqrt(torch.mean((out - y) ** 2))
+        
         loss.backward()
         optimizer.step()
         
-        # Calculate MAE and RMSE for the current epoch
-        mae, rmse = compute_metrics(y, out)
-        
         if epoch % 10 == 0:
-            print(f"Epoch {epoch}: Loss = {loss.item():.4f}, MAE = {mae:.4f}, RMSE = {rmse:.4f}")
+            print(f"Epoch {epoch}: Loss = {loss.item():.4f}, MAE = {mae.item():.4f}, RMSE = {rmse.item():.4f}")
     
     print("✅ Model training complete!")
     
@@ -86,10 +82,20 @@ def train_model(G, depth_dict, gate_types, setup_time, hold_time, clock_period):
         if depth * setup_time > clock_period:
             print(f"⚠️ Timing Violation at {node}: Depth {depth:.2f} exceeds clock period {clock_period}")
     
-    # Final MAE and RMSE after training
-    final_mae, final_rmse = compute_metrics(y, out)
+    # Final metrics
+    final_mae = torch.mean(torch.abs(out - y)).item()
+    final_rmse = torch.sqrt(torch.mean((out - y) ** 2)).item()
     print(f"\nFinal Metrics: MAE = {final_mae:.4f}, RMSE = {final_rmse:.4f}")
     
+    # Save graph visualization
+    plt.figure(figsize=(10, 8))
+    nx.draw(G, with_labels=True, node_size=3000, node_color='lightblue', font_size=12, font_weight='bold', edge_color='gray')
+    plt.title("RTL Netlist Graph Visualization")
+    plt.savefig("rtl_netlist_graph.png")  # Save the plot to a file
+    plt.close()  # Close the plot
+    
+    print("Graph saved as 'rtl_netlist_graph.png'.")
+
     return model
 
 # --- Main Execution ---
