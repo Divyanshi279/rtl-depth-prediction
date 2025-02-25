@@ -59,7 +59,7 @@ pytest test_rtl_depth_prediction.py
 - *Root Mean Square Error (RMSE)*: Evaluates the deviation from true values.
 
 ## 📌 Environment Setup
-- The project has been tested and verified on **GitHub Codespaces**.
+- The project has been tested and verified on **GitHub Codespaces** **bookish dollop**.
 - Ensure you have Python 3.8+ installed.
 - Clone the repository:
   ```bash
