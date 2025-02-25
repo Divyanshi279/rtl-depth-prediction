@@ -1,5 +1,4 @@
-# rtl-depth-prediction
-# RTL Netlist Depth Prediction using Graph Neural Networks
+# RTL Netlist Depth Prediction using Hybrid Graph Neural Networks + Heuristic
 
 ## 📌 Project Overview
 This project utilizes *Graph Neural Networks (GNNs)* to predict the *combinational depth* of gates in an *RTL (Register Transfer Level) netlist. The system extracts **graph-based features* and applies *hybrid GNN + heuristic* techniques to analyze and predict the circuit timing.
@@ -13,10 +12,17 @@ This project utilizes *Graph Neural Networks (GNNs)* to predict the *combination
 
 ## 📂 File Structure
 
-├── rtl_depth_prediction.py  # Main script for feature extraction & training
-├── test_rtl_depth.py        # Unit and integration tests
-├── rtl_netlist_graph.png    # Generated visualization of RTL graph
-└── README.md                # Project documentation
+├── __pycache__/                 # Compiled Python files (auto-generated)  
+├── depth_report.json            # Combinational depth report of the RTL netlist  
+├── evaluation_report.json       # Model evaluation metrics (MAE, RMSE)  
+├── graph_structure.json         # Graph representation of the RTL netlist  
+├── requirements.txt             # Required dependencies for the project  
+├── rtl_depth_prediction.py      # Main script for feature extraction, training, and evaluation  
+├── rtl_netlist.json             # Input RTL netlist in JSON format  
+├── rtl_netlist_graph.png        # Visualization of the RTL netlist graph  
+├── test_rtl_depth_prediction.py # Unit tests for RTL depth prediction model  
+├── timing_constraints.json      # Setup, hold time, and clock period constraints  
+└── README.md                    # Project documentation  
 
 
 ## 🛠 Dependencies
@@ -32,7 +38,7 @@ Execute the script and provide the required file paths and constraints:
 bash
 python rtl_depth_prediction.py
 
-*Inputs Required:*
+**Inputs Required:**
 - RTL netlist file (JSON format)
 - Combinational depth report file (JSON format)
 - Setup time, hold time, and clock period constraints
@@ -41,7 +47,9 @@ python rtl_depth_prediction.py
 To validate feature extraction and GNN performance:
 bash
 pytest test_rtl_depth.py
-
+```
+Tested Environment
+✅ This project is developed and tested on GitHub Codespaces.
 
 ## 📊 Results & Output
 - *Training Logs*: Displays loss, MAE, RMSE for every 10 epochs.
